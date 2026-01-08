@@ -15,3 +15,16 @@ df = pd.read_excel("data.xlsx")
 df.drop_duplicates(inplace=True)
 df.fillna("NA", inplace=True)
 df.to_excel("cleaned_data.xlsx", index=False)
+
+import logging
+
+logging.basicConfig(filename="cleaner.log", level=logging.INFO)
+logging.info("File cleaned successfully")
+import requests
+from bs4 import BeautifulSoup
+
+response = requests.get("https://example.com")
+soup = BeautifulSoup(response.text, "html.parser")
+print(soup.title.text)
+
+
