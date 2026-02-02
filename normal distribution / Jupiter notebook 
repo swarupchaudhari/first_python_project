@@ -1,0 +1,77 @@
+import pandas as pd
+from matplotlib import pyplot as plt
+import seaborn as sns
+
+
+df = pd.read_csv("heights_with_outliers.csv")
+df.head(5)
+
+
+Sample Data
+name
+height
+Aarav
+5.45
+Deepika
+8.20
+Abhishek
+5.65
+Sneha
+5.52
+Kriti
+5.69
+
+
+mean = df.height.mean()
+std = df.height.std()
+
+mean, std
+
+(5.61118, 0.37265)
+
+
+sns.histplot(df.height, kde=True)
+
+# Mean
+plt.axvline(mean, color='k', linestyle='dashed', linewidth=1)
+
+# 1 Standard Deviation
+plt.axvline(mean + std, color='r', linestyle='dashed', linewidth=1)
+plt.axvline(mean - std, color='r', linestyle='dashed', linewidth=1)
+
+# 2 Standard Deviations
+plt.axvline(mean + 2*std, color='g', linestyle='dashed', linewidth=1)
+plt.axvline(mean - 2*std, color='g', linestyle='dashed', linewidth=1)
+
+# 3 Standard Deviations
+plt.axvline(mean + 3*std, color='b', linestyle='dashed', linewidth=1)
+plt.axvline(mean - 3*std, color='b', linestyle='dashed', linewidth=1)
+
+plt.show()
+
+
+
+lower = mean - 3*std
+upper = mean + 3*std
+
+lower, upper
+
+(4.49, 6.73)
+
+
+df[(df.height < lower) | (df.height > upper)]
+Detected Outliers
+name.  height
+Deepika. 8.2
+Tanvi.   3.2
+Priya.   3.4
+Aarav.   9.4
+
+df_no_outliers = df[(df.height > lower) & (df.height < upper)]
+df_no_outliers.shape
+
+(996, 2)
+
+
+sns.histplot(df_no_outliers.height, kde=True)
+plt.show()
