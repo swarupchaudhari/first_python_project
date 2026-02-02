@@ -7,3 +7,50 @@ Message (optional)
 📌 Title example:
 “Contact Us – Lead Form”
 Submit one test response.
+
+
+STEP 2: Google Sheet (Database)
+Create a Google Sheet with columns:
+
+Name | Email | Phone | Message | Date
+
+📌 This sheet is your lead database.
+
+
+STEP 3: Create the Automation (Core Part)
+🔹 Trigger
+App: Google Forms
+Event: New Form Response
+👉 This means:
+Whenever someone submits the form, automation starts.
+
+Action 1: Save Lead to Google Sheet
+App: Google Sheets
+Event: Create Row
+Map:
+Sheet Column. Form Data
+Name.         Name
+Email.        Email
+Phone.        Phone
+Message.      Message
+Date.         Submission time
+
+✅ Now leads are stored automatically
+
+Action 2: Auto Confirmation Email
+App: Gmail
+Event: Send Email
+Example setup:
+To: Lead’s email
+Subject: Thanks for contacting us
+Body: 
+Hi {{Name}},
+Thank you for reaching out.
+We have received your message and will contact you shortly.
+
+STEP 4: Test the System
+Fill the form
+Check Google Sheet → new row added 
+Check inbox → auto email received 
+If all 3 work →
+Your Lead Capture System is LIVE
