@@ -1,0 +1,57 @@
+import pandas as pd
+import numpy as np
+
+# Load data
+df = pd.read_csv("movie_revenues.csv")
+
+# Preview data
+df.head()
+df.describe()
+
+
+
+#Convert revenue to millions
+df['revenue_mln'] = df['revenue'] / 1_000_000
+df['revenue_mln'].describe()
+df.head(2)
+
+
+#Z-Score Method
+mean = df['revenue_mln'].mean()
+std = df['revenue_mln'].std()
+
+def get_z_score(value, mean, std):
+    return (value - mean) / std
+
+df['z_score'] = df['revenue_mln'].apply(
+    lambda x: get_z_score(x, mean, std)
+)
+
+df.head(3)
+
+
+df[np.abs(df['z_score']) > 3]
+
+
+#MAD (Median Absolute Deviation)
+def get_mad(s):
+    median = np.median(s)
+    diff = np.abs(s - median)
+    MAD = np.median(diff)
+    return MAD
+
+MAD = get_mad(df['revenue_mln'])
+median = np.median(df['revenue_mln'])
+
+MAD, median
+
+
+#Modified Z-Score
+
+def get_modified_z_score(x, median, MAD):
+    return 0.6745 * (x - median) / MAD
+
+df['mod_z_score'] = df['revenue_mln'].apply(
+    lambda x: get_modified_z_score(x, median, MAD)
+)
+
