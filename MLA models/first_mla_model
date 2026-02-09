@@ -1,0 +1,28 @@
+from sklearn import tree
+
+# Step 1: Collect Data
+
+# Features: [weight (grams), color]
+# color: 0 = red, 1 = orange
+
+features = [
+    [150, 0],  # Apple
+    [178, 0],  # Apple
+    [130, 1],  # Orange
+    [120, 1]   # Orange
+]
+
+labels = [
+    "Apple",
+    "Apple",
+    "Orange",
+    "Orange"
+]
+
+# Step 2: Train the model
+clf = tree.DecisionTreeClassifier()
+clf.fit(features, labels)
+
+# Step 3: Predict
+print(clf.predict([[160, 0]]))  # Heavy and red → Apple
+print(clf.predict([[115, 1]]))  # Light and orange → Orange
