@@ -1,0 +1,28 @@
+import pandas as pd
+import numpy as np
+
+# Set random seed for reproducibility
+np.random.seed(42)
+
+# Define number of rows
+num_rows = 1000
+
+# Generate random data
+data = {
+    'camera_mp': np.random.randint(8, 201, size=num_rows),     # Camera (8–200 MP)
+    'age': np.random.randint(0, 4, size=num_rows),             # Age in years (0–3)
+    'ram': np.random.choice([4, 6, 8, 12, 16], size=num_rows),  # RAM in GB
+    'cpu_score': np.random.randint(40, 101, size=num_rows),    # CPU score (40–100)
+    'storage_sd': np.random.choice([0, 1], size=num_rows),     # SD card (0=No, 1=Yes)
+    'sims': np.random.choice([1, 2], size=num_rows),           # SIM slots
+    'price': np.random.randint(8000, 70001, size=num_rows)     # Price (₹8k–₹70k)
+}
+
+# Create DataFrame
+df = pd.DataFrame(data)
+
+# Save to CSV (optional)
+df.to_csv("smartphone_data.csv", index=False)
+
+# Display first few rows
+print(df.head())
