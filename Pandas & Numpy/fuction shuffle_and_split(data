@@ -12,3 +12,8 @@ def shuffle_and_split(data, test_ratio):
     train_indices = shuffled_indices[test_set_size:]  # Remaining → train
     
     return data.iloc[train_indices], data.iloc[test_indices]
+
+
+
+
+train, test = shuffle_and_split(df, 0.2)
