@@ -1,0 +1,14 @@
+import numpy as np
+
+def shuffle_and_split(data, test_ratio):
+    
+    np.random.seed(42)  # Set seed for reproducibility
+    
+    shuffled_indices = np.random.permutation(len(data))  # Shuffle indices
+    
+    test_set_size = int(len(data) * test_ratio)  # Calculate test size
+    
+    test_indices = shuffled_indices[:test_set_size]   # First part → test
+    train_indices = shuffled_indices[test_set_size:]  # Remaining → train
+    
+    return data.iloc[train_indices], data.iloc[test_indices]
