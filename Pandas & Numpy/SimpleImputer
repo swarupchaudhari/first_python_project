@@ -1,0 +1,41 @@
+import numpy as np
+import pandas as pd
+from sklearn.impute import SimpleImputer
+
+housing_num = housing.select_dtypes(include=[np.number])
+
+housing_num.head()
+
+
+
+imputer = SimpleImputer(strategy="median")
+
+
+
+imputer.fit(housing_num)
+
+
+
+
+imputer.statistics_
+
+
+
+
+array([-118.51, 34.26, 29., 2119., 433., 1164., 408., 3.54155])
+
+
+
+
+X = imputer.transform(housing_num)
+
+
+
+housing_tr = pd.DataFrame(X, columns=housing_num.columns)
+
+housing_tr.head()
+
+
+
+
+
