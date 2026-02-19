@@ -1,0 +1,38 @@
+import numpy as np
+import pandas as pd
+from scipy import stats
+
+# Example DataFrame (if not already created)
+# df = pd.DataFrame({"price_increase_pct": np.random.normal(11, 4, 100)})
+
+# Check shape
+df.shape
+
+
+population_mean = 10
+population_std_dev = 4
+
+sample_mean = df["price_increase_pct"].mean()
+sample_mean
+
+
+standard_error = population_std_dev / np.sqrt(df.shape[0])
+standard_error
+
+
+z_score = (sample_mean - population_mean) / standard_error
+z_score
+
+
+alpha = 0.05
+
+z_critical = stats.norm.ppf(1 - alpha)
+z_critical
+
+
+z_score, z_critical
+
+
+2.5 > 1.645
+
+
