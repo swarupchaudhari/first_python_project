@@ -1,0 +1,17 @@
+
+
+
+from sklearn.pipeline import Pipeline
+from sklearn.impute import SimpleImputer
+from sklearn.preprocessing import StandardScaler
+
+# Create pipeline
+mypipeline = Pipeline([
+    ("imputer", SimpleImputer(strategy="median")),
+    ("standardize", StandardScaler())
+])
+
+# Apply pipeline
+housing_prepared = mypipeline.fit_transform(housing)
+
+housing_prepared
