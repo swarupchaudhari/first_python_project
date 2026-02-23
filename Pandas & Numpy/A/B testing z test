@@ -1,0 +1,42 @@
+import numpy as np
+import scipy.stats as  st
+
+control_mean = control["recovery_time_hrs"].mean().round(2)
+control_std = control["recovery_time_hrs"].std().round(2)
+control_size = control.shape[0]
+
+control_mean, control_std, control_size
+
+
+test_mean = test["recovery_time_hrs"].mean().round(2)
+test_std = test["recovery_time_hrs"].std().round(2)
+test_size = test.shape[0]
+
+test_mean, test_std, test_size
+
+
+
+a = control_std**2 / control_size
+b = test_std**2 / test_size
+
+Z_score = (control_mean - test_mean) / np.sqrt(a + b)
+
+
+
+
+
+Z_score
+
+
+alpha = 0.05
+
+critical_z_value = st.norm.ppf(1 - alpha)
+
+critical_z_value
+
+
+Z_score > critical_z_value
+
+
+
+p_value < alpha
