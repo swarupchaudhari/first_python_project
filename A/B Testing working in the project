@@ -1,0 +1,109 @@
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+import scipy.stats as st
+import statsmodels.api as sm
+
+
+# Create 1x2 grid
+fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(11, 4))
+
+# Control Group
+sns.histplot(
+    df['control_group_avg_tran'],
+    kde=True,
+    color='skyblue',
+    label='Control Group',
+    ax=ax1
+)
+
+ax1.set_xlabel('Sales')
+ax1.set_ylabel('Frequency')
+ax1.set_title('Distribution of Control Group Avg Transaction')
+ax1.legend()
+
+# Test Group
+sns.histplot(
+    df['test_group_avg_tran'],
+    kde=True,
+    color='lightgreen',
+    label='Test Group',
+    ax=ax2
+)
+
+ax2.set_xlabel('Sales')
+ax2.set_ylabel('Frequency')
+ax2.set_title('Distribution of Test Group Avg Transaction')
+ax2.legend()
+
+plt.tight_layout()
+plt.show()
+
+
+
+(df[df['control_group_avg_tran'] > df['test_group_avg_tran']].shape[0] 
+ / df.shape[0])
+
+
+
+control_mean = df["control_group_avg_tran"].mean().round(2)
+control_std = df["control_group_avg_tran"].std().round(2)
+
+test_mean = df["test_group_avg_tran"].mean().round(2)
+test_std = df["test_group_avg_tran"].std().round(2)
+
+control_mean, control_std, test_mean, test_std
+
+
+
+sample_size = df.shape[0]
+sample_size
+
+
+a = test_std**2 / sample_size
+b = control_std**2 / sample_size
+
+Z_score = (test_mean - control_mean) / np.sqrt(a + b)
+
+Z_score
+
+
+
+
+
+alpha = 0.05
+
+critical_z_value = st.norm.ppf(1 - alpha)
+
+critical_z_value
+
+
+Z_score > critical_z_value
+
+
+p_value = 1 - st.norm.cdf(Z_score)
+
+p_value
+
+
+z_statistic, p_value = sm.stats.ztest(
+    df['test_group_avg_tran'],
+    df['control_group_avg_tran'],
+    alternative='larger'
+)
+
+z_statistic, p_value
+
+
+
+test_group_CI = st.norm.interval(
+    0.95,
+    loc=test_mean,
+    scale=test_std / np.sqrt(sample_size)
+)
+
+test_group_CI
+
+
+
