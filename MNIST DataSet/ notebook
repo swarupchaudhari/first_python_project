@@ -1,0 +1,21 @@
+import tensorflow as tf
+import matplotlib.pyplot as plt
+
+# Load MNIST dataset
+(x_train, y_train), (x_test, y_test) = tf.keras.datasets.mnist.load_data()
+
+# Print shapes
+print("Training data shape is:", x_train.shape)
+print("Test data shape is:", x_test.shape)
+
+# Plot first 10 images
+plt.figure(figsize=(10, 2))
+
+for i in range(10):
+    plt.subplot(1, 10, i+1)
+    plt.imshow(x_train[i], cmap="gray")
+    plt.axis("off")
+    plt.title(str(y_train[i]))
+
+plt.tight_layout()
+plt.show()
