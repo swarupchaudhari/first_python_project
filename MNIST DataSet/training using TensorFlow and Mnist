@@ -22,3 +22,23 @@ model = Sequential([
     Dense(128, activation="relu"),
     Dense(10, activation="softmax")
 ])
+
+# Compile the model
+model.compile(
+    optimizer="adam",
+    loss="categorical_crossentropy",
+    metrics=["accuracy"]
+)
+
+# Train the model
+history = model.fit(
+    x_train,
+    y_train,
+    epochs=5,
+    batch_size=32
+)
+
+# Evaluate on test data
+test_loss, test_acc = model.evaluate(x_test, y_test)
+
+print("Test accuracy is:", test_acc)
