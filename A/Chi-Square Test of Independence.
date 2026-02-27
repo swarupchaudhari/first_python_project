@@ -1,0 +1,12 @@
+import numpy as np
+from scipy.stats import chi2_contingency
+
+# Observed frequencies
+actual_count = np.array([
+    [50, 30],   # Under 30: iPhone, Samsung
+    [20, 50]    # 30 & Over: iPhone, Samsung
+])
+
+chi2_statistic, p_value, df, expected_count = chi2_contingency(actual_count, correction=False)
+
+chi2_statistic, p_value, df, expected_count
