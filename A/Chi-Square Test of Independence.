@@ -10,3 +10,12 @@ actual_count = np.array([
 chi2_statistic, p_value, df, expected_count = chi2_contingency(actual_count, correction=False)
 
 chi2_statistic, p_value, df, expected_count
+
+
+Chi-square statistic = 17.2672
+p-value = 3.2474e-05
+Degrees of freedom = 1
+
+Expected frequencies:
+[[37.33, 42.67],
+ [32.67, 37.33]]
