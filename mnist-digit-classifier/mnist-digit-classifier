@@ -1,0 +1,6 @@
+mnist-digit-classifier/
+│
+├── main.py
+├── requirements.txt
+├── README.md
+└── .gitignore
