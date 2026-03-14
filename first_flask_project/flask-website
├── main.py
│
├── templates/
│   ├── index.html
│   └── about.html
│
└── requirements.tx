@@ -1,0 +1,9 @@
+flask-website/
+│
+├── main.py
+│
+├── templates/
+│   ├── index.html
+│   └── about.html
+│
+└── requirements.txt
