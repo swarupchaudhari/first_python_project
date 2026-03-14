@@ -1,0 +1,10 @@
+## Output
+
+The model trains for 5 epochs and prints test accuracy.
+
+## Technologies Used
+
+- Python
+- TensorFlow
+- Keras
+- Matplotlib
