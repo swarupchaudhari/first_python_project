@@ -17,7 +17,7 @@ def gradient_descent(x, y, lr=0.01, epochs=1000):
         b = b - lr * db
         
         if epoch % 100 == 0:
-            print(f"Epoch {epoch}: m = {m:.4f}, b = {b:.4f}, Cost = {cost:.4f}")
+            print(f"Epoch "{epoch}": m = "{m}", b = "{b}", Cost = "{cost}")
 
 if __name__ == "__main__":
     x = np.array([1, 2, 3, 4, 5])
