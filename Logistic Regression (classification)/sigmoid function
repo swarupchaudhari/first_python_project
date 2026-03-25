@@ -1,0 +1,18 @@
+import math
+
+# Sigmoid function
+def sigmoid(x):
+    return 1 / (1 + math.exp(-x))
+
+# Prediction function
+def prediction_function(salary, model):
+    z = model.coef_[0][0] * salary + model.intercept_[0]
+    y = sigmoid(z)
+    return y
+
+# Example calculation
+z = model.coef_[0][0] * 62000 + model.intercept_[0]
+print(z)
+
+# Prediction
+prediction_function(29800, model)
