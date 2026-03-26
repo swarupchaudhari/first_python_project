@@ -28,3 +28,34 @@ print(y_test.tolist())
 # Classification report
 report = classification_report(y_test, y_pred)
 print(report)
+
+
+from sklearn.metrics import confusion_matrix
+import seaborn as sns
+import matplotlib.pyplot as plt
+
+# Confusion matrix
+cm = confusion_matrix(y_test, y_pred)
+print(cm)
+
+# Labels
+classes = ["No Car", "Owns Car"]
+
+# Heatmap
+sns.heatmap(cm, annot=True, xticklabels=classes, yticklabels=classes)
+plt.xlabel('Predicted Labels')
+plt.ylabel('True Labels')
+plt.title('Confusion Matrix')
+plt.show()
+
+
+
+
+sns.heatmap(cm, annot=True, 
+            xticklabels=iris.target_names, 
+            yticklabels=iris.target_names)
+
+plt.xlabel('Predicted Labels')
+plt.ylabel('True Labels')
+plt.title('Confusion Matrix')
+plt.show()
