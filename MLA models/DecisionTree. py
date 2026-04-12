@@ -1,0 +1,49 @@
+import pandas as pd
+df = pd.read_csv("salaries.csv")
+df.head()
+
+df.shape
+
+df.degree.unique()
+['bachelors', 'masters']
+
+
+df['degree_number'] = df['degree'].map({
+    'bachelors': 1,
+    'masters': 2
+})
+
+
+df.drop('degree', axis='columns', inplace=True)
+
+
+X = df_encoded.drop('salary_more_then_100k', axis='columns')
+y = df_encoded['salary_more_then_100k']
+
+
+from sklearn.tree import DecisionTreeClassifier
+
+model = DecisionTreeClassifier()
+model.fit(X, y)
+
+y_pred = model.predict(X)
+
+
+from sklearn.metrics import classification_report
+print(classification_report(y, y_pred))
+
+from sklearn.tree import export_text
+print(export_text(model, feature_names=list(X.columns)))
+
+degree_number <= 1.5 → class 0
+degree_number > 1.5 → class 1
+
+
+
+model.predict([
+    [1, 1, 0, 1, 0],
+    [1, 0, 1, 0, 1],
+])
+
+
+[1, 0]
