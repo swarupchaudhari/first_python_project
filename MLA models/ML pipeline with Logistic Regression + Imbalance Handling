@@ -1,0 +1,56 @@
+X = df.drop("Churn", axis="columns")
+y = df["Churn"]
+
+from sklearn.model_selection import train_test_split
+
+X_train, X_test, y_train, y_test = train_test_split(
+    X, y,
+    test_size=0.2,
+    stratify=y,
+    random_state=42
+)
+
+
+
+from sklearn.linear_model import LogisticRegression
+
+model = LogisticRegression(max_iter=2000)
+model.fit(X_train, y_train)
+
+
+from sklearn.metrics import classification_report
+
+y_pred = model.predict(X_test)
+print(classification_report(y_test, y_pred))
+
+
+y_train.value_counts()
+
+0 → 2124 (majority)
+1 → 396  (minority)
+
+
+
+from imblearn.under_sampling import RandomUnderSampler
+
+rus = RandomUnderSampler(random_state=42)
+X_train_rus, y_train_rus = rus.fit_resample(X_train, y_train)
+
+precision recall f1-score support
+
+
+
+
+
+from imblearn.over_sampling import SMOTE
+
+smote = SMOTE(random_state=42)
+X_train_smote, y_train_smote = smote.fit_resample(X_train, y_train)
+
+
+
+from imblearn.over_sampling import SMOTE
+
+smote = SMOTE(random_state=42)
+X_train_smote, y_train_smote = smote.fit_resample(X_train, y_train)
+
