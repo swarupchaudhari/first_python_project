@@ -1,0 +1,27 @@
+from xgboost import XGBClassifier
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import accuracy_score
+
+# Split data
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2)
+
+# Model
+model = XGBClassifier()
+
+# Train
+model.fit(X_train, y_train)
+
+# Predict
+y_pred = model.predict(X_test)
+
+# Accuracy
+print("Accuracy:", accuracy_score(y_test, y_pred))
+
+
+... 
+
+XGBClassifier(
+    n_estimators=100,   # number of trees
+    learning_rate=0.1,  # speed of learning
+    max_depth=3         # tree depth
+)
