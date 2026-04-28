@@ -1,0 +1,16 @@
+from sklearn.model_selection import KFold
+
+kf = KFold(n_splits=5, shuffle=True, random_state=42)
+
+data = [50, 60, 70, 80, 90]
+
+for train_index, test_index in kf.split(data):
+    print("Train:", train_index, "Test:", test_index)
+... 
+
+
+
+for train_index, test_index in kf.split(data):
+    train_data = [data[i] for i in train_index]
+    test_data = [data[i] for i in test_index]
+    print("Train:", train_data, "Test:", test_data)
