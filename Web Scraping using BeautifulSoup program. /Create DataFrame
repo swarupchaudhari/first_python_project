@@ -1,0 +1,20 @@
+import pandas as pd
+
+# Create DataFrame
+data = {
+    'Vendor': ['Motumal Chaat', 'Bharat Biryani'],
+    'Amount': [78000, 120],   # Amount in INR
+    'Location': ['New Delhi', 'Hyderabad'],
+    'Date': ['2 Feb 2024', '13 Sep 2023'],
+    'Is Fraud?': ['Yes', 'No']
+}
+
+df = pd.DataFrame(data)
+
+# Create 'High Value' column
+df['High Value'] = df['Amount'].apply(
+    lambda x: 'Yes' if x > 10000 else 'No'
+)
+
+# Display DataFrame
+print(df)
