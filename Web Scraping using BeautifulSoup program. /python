@@ -1,0 +1,18 @@
+import requests
+from bs4 import BeautifulSoup
+
+# Specify the URL you want to scrape
+url = "https://example.com"
+
+# Retrieve data from the URL
+response = requests.get(url)
+
+# Parse HTML content using BeautifulSoup
+soup = BeautifulSoup(response.text, 'html.parser')
+
+# Find all paragraph tags
+paragraphs = soup.find_all('p')
+
+# Print paragraph text
+for paragraph in paragraphs:
+    print(paragraph.text)
