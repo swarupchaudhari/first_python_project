@@ -1,0 +1,28 @@
+import pandas as pd
+from matplotlib import pyplot as plt
+import seaborn as sns
+import numpy as np
+from sklearn.cluster import DBSCAN
+
+# Read Excel file
+df = pd.read_excel("income.xlsx", names=["name", "age", "income"])
+
+# Scatter Plot
+sns.scatterplot(data=df, x='age', y='income', s=100)
+plt.show()
+
+# DBSCAN Clustering
+ds = DBSCAN(eps=11, min_samples=2)
+ds.fit(df[['age', 'income']])
+
+# Cluster Labels
+print(ds.labels_)
+
+# Add Cluster Column
+df["cluster"] = ds.labels_
+print(df)
+
+# Visualize Clusters
+sns.scatterplot(data=df, x='age', y='income',
+                hue='cluster', palette='viridis', s=100)
+plt.show()
