@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Card = () => {
+const Card = (props) => {
   return (
     <div className="card">
       <img
@@ -8,7 +8,9 @@ const Card = () => {
         alt="Profile"
       />
 
-      <h1>Swarup Chaudhari</h1>
+      <h1>
+        {props.user}, {props.age}
+      </h1>
 
       <p>
         Lorem ipsum dolor sit amet consectetur adipisicing elit.
