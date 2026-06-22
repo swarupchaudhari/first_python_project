@@ -1,12 +1,10 @@
+
 import React from 'react';
 
 const Card = (props) => {
   return (
     <div className="card">
-      <img
-        src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=500"
-        alt="Profile"
-      />
+      <img src={props.img} alt={props.user} />
 
       <h1>
         {props.user}, {props.age}
